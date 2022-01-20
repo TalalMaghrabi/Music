@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>music player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="mU.css">
+</head>
+
+<body>
+/*-----------Bar LEFT------*/
+ <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name">T.maghrabi</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+
+
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-home" aria-hidden="true"></i>
+
+
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name"> Home</span>
+        </a>
+         <span class="tooltip">Home</span>
+      </li>
+      <li>
+       <a href="#">
+        <i class="fa fa-music" aria-hidden="true"></i>
+
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Music</span>
+       </a>
+       <span class="tooltip">Music</span>
+     </li>
+     <li>
+       <a href="#">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Liked Songs</span>
+       </a>
+       <span class="tooltip">Liked Songs</span>
+     </li>
+    
+     <li>
+       <a href="#">
+        <i class="fa fa-wrench" aria-hidden="true"></i>
+
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+     
+     </li>
+    </ul>
+  </div>
+  
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+
+
+  <div class="main">
+  	<p id="logo"><i class="fa fa-music"></i>Music</p>
+    
+    <!--- left part --->
+     <div class="left">
+
+      <!--- song img --->
+      <img id="track_image">
+         <div class="volume">
+            <p id="volume_show">90</p>
+            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+            <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume">  
+         </div>
+
+     </div>
+   
+ 
+
+     <!--- right part --->
+  	 <div class="right">
+
+        <div class="show_song_no">
+          <p id="present">1</p>
+          <p>/</p>
+          <p id="total">5</p>
+        </div>
+
+       <!--- song title & artist name --->
+      <p id="title">title.mp3</p>
+      <p id="artist">Artist name</p>
+
+      <!--- middle part --->
+  	 	<div class="middle">
+  	       <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+      	   <button onclick="justplay()" id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
+  	       <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+  	   </div>
+
+       <!--- song duration part --->
+        <div class="duration">
+           <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
+        </div>
+           <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
+  	</div>
+
+
+  </div>
+   
+  <!--- Add javascript file --->
+  <script src="script.js"></script>
+
+</body>
+</html>
